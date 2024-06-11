@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shared_preferences_example/screens/homePage.dart';
+import 'package:shared_preferences_example/screens/splash.dart';
 
 
-late SharedPreferences sharedPreferences;
+const SAVE_KEY_NAME = "UserLoggedIn";
+
 
  main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  final count = sharedPreferences.getInt("counter") ?? 0;
-  runApp(MyApp(count:count));
+ runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final int count;
-  const MyApp({super.key,required this.count});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: HomePage(count: count,),
+      home: ScreenSplash()
     );
   }
 }
